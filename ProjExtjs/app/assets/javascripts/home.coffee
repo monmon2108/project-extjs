@@ -9,6 +9,24 @@ Ext.onReady ->
   Ext.create 'Ext.Panel',
     renderTo: Ext.getBody(),
     title: 'Hello world',
+    items:[
+      xtype: 'textfield',
+      name: 'input',
+      fieldLabel: 'Input',
+    ,
+      xtype: 'checkbox'
+      boxLabel: 'Click'
+      listeners:
+        change: (checkbox, new_value, old_value)->
+          panel = checkbox.up 'panel'
+          btn = panel.down 'button'
+          btn.setDisabled new_value
+    ,
+      xtype: 'button',
+      text: 'Click Me!'
+      handler: (btn) ->
+        panel = btn.up 'panel'
+        textfield = panel.down 'textfield'
+        alert textfield.getValue()
 
-  Ext.create 'Ext.Button',
-    
+    ]
