@@ -19,3 +19,8 @@ RUN yum install -y wget bzip2 vim \
 
  RUN gem install bundler \
   && gem install rails
+
+
+ COPY ProjExtjs/Gemfile /Gemfile
+ COPY ProjExtjs/Gemfile.lock /Gemfile.lock
+ RUN bundle install
