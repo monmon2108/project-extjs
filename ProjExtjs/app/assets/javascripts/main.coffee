@@ -12,45 +12,37 @@ Ext.onReady ->
       text: 'Logout'
       handler: (btn) ->
         panel = btn.up 'panel'
-        Ext.Msg.confirm("Confirmation", "Are you sure you want to logout?", (btn) ->
-            if btn == 'yes'
-              document.location.assign '/'
+
+        value = document.getElementsByTagName("meta")[1].getAttribute('content')
+        key = document.getElementsByTagName("meta")[0].getAttribute('content')
+
+        params =
+          username: ''
+          password: ''
+
+        params[key] = value
+
+        Ext.Ajax.request {
+          url: 'logout',
+          method: 'POST'
+          params: params
+
+          success: (response, opts) ->
+            obj = Ext.decode response.responseText
+
+            if obj.success
+
+                Ext.Msg.confirm("Confirmation", "Are you sure you want to logout?", (btn) ->
+                    if btn == 'yes'
+                      document.location.assign '/'
+                    else
+                )
+
             else
-        )
+              Ext.Msg.alert('Logout','Sorry You cant logout!')
+          ,
 
-        
-        # document.location.assign '/'
-
-
-
-
-        # value = document.getElementsByTagName("meta")[1].getAttribute('content')
-        # key = document.getElementsByTagName("meta")[0].getAttribute('content')
-        #
-        # params =
-        #   username: ''
-        #   password: ''
-        #
-        # params[key] = value
-        #
-        # Ext.Ajax.request {
-        #   url: 'logout',
-        #   method: 'POST'
-        #   params: params
-        #
-        #   success: (response, opts) ->
-        #     obj = Ext.decode response.responseText
-        #
-        #     if obj.success
-        #       alert 'Logout Success!!'
-        #
-        #       document.location.assign '/'
-        #
-        #     else
-        #       alert 'Incorrect!'
-        #   ,
-        #
-        #   failure: (response, opts) ->
-        #     console.log 'server-side failure with status code ' + response.status
-        # }
+          failure: (response, opts) ->
+            console.log 'server-side failure with status code ' + response.status
+        }
     ]

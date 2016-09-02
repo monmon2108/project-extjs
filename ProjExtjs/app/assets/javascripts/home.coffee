@@ -60,11 +60,11 @@ Ext.onReady ->
             obj = Ext.decode response.responseText
             console.log obj
             if obj.success
-              alert 'Success!!'
+              Ext.Msg.alert('Login','Success!!')
               document.location.assign 'main'
             else
-              alert 'Incorrect!'
-          
+              Ext.Msg.alert('Login','Incorrect!')
+
           ,
 
           failure: (response, opts) ->

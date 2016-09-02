@@ -2,18 +2,20 @@ class MainController < ApplicationController
 
 
   def show
-    # render :json => {a:1,b:2}
-    # render
+    # p session
+    p 'main'
+
+    if session[:username] == nil
+      redirect_to '/'
+    end
   end
 
   def logout
-    # if params[:username] == '' && params[:password] == ''
-    #   render :json => {success: true}
-    #
-    # else
-    #   render :json => {success: false}
-    #
-    # end
+    puts 'logout'
+    session[:username] = nil
+    render :json => {success: true}
+
+
   end
 
 end
