@@ -3,6 +3,10 @@ Rails.application.routes.draw do
 
   # resources :home
 
-  root 'home#index'
+  get '/', to: 'home#index'
+  post '/login', to: 'home#login'
+
+  get '/main', to: 'main#show'
+  post '/logout', to: 'main#logout'
 
 end
