@@ -8,3 +8,10 @@ services:
       - .:/myextjs
     ports:
       - "3000:3000"
+
+  postgres:
+    image: postgres:9.5.3
+    environment:
+      PGDATA: /pgdata
+    ports:
+      - "5432:5432"

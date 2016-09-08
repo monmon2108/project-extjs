@@ -10,4 +10,5 @@ Rails.application.routes.draw do
   get '/main', to: 'main#show'
   post '/logout', to: 'main#logout'
 
+  get '/timestampdata', to: 'timestampdata#index'
 end

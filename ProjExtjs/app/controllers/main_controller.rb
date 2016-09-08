@@ -8,6 +8,7 @@ class MainController < ApplicationController
     if session[:username] == nil
       redirect_to '/'
     end
+  
   end
 
   def logout

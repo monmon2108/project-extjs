@@ -17,6 +17,22 @@ RUN yum install -y wget bzip2 vim \
   && make install \
   && rm -rf ruby-2.3.1.tar.gz
 
+RUN yum update -y \
+&& yum install -y make gcc gcc-c++ wget vim mlocate which tar bzip2 zip unzip net-tools rsync python-setuptools glibc-static \
+&& rpm -iUvh http://yum.postgresql.org/9.5/redhat/rhel-7-x86_64/pgdg-centos95-9.5-2.noarch.rpm \
+&& yum install -y\
+  postgresql95-9.5.*\
+  postgresql95-devel-9.5.*\
+  postgresql95-libs-9.5.*\
+  postgresql95-plpython-9.5.*\
+  postgresql95-python-*\
+  postgresql95-python-debuginfo-*\
+  postgresql95-server-9.5.* \
+|| yum clean all
+
+ENV PATH $PATH:/usr/pgsql-9.5/bin
+
+
  RUN gem install bundler \
   && gem install rails
 
