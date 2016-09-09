@@ -11,4 +11,7 @@ Rails.application.routes.draw do
   post '/logout', to: 'main#logout'
 
   get '/timestampdata', to: 'timestampdata#index'
+  post '/timein', to: 'main#timein'
+  post '/timeout', to: 'main#timeout'
+  post '/search', to: 'main#search'
 end

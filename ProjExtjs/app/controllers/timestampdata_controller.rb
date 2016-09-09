@@ -2,12 +2,12 @@ class TimestampdataController < ApplicationController
 
 
   def index
-    render :json => {timestampdata: [
-      {date: 'abc',
-      name: 'monmon',
-      time_in: '000',
-      time_out: '1111'}
-      ]}
+    p params[:datefrom_search]
+    p params[:dateto_search]
+
+    @timestampdata = WorkTime.search(params[:datefrom_search],params[:dateto_search],session[:username])
+    p @timestampdata
+    render :json => {timestampdata: @timestampdata}
 
   end
 

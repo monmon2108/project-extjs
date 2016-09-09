@@ -12,8 +12,14 @@ class HomeController < ApplicationController
   end
 
   def login
-    if params[:username] == 'admin' && params[:password] == '1234'
+    @username = params[:username]
+    @password = params[:password]
+    @user = Employee.searchuser(@username,@password)[0]
+    if @user
       session[:username] = params[:username]
+      session[:password] = params[:password]
+      p session[:username]
+      p session[:password]
       render :json => {success: true}
 
     else
