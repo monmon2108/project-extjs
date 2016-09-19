@@ -14,4 +14,8 @@ Rails.application.routes.draw do
   post '/timein', to: 'main#timein'
   post '/timeout', to: 'main#timeout'
   post '/search', to: 'main#search'
+
+
+  get '/client', to: 'clienthome#index'
+  get '/update', to: 'clientupdate#index'
 end
